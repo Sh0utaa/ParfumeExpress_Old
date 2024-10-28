@@ -3,7 +3,6 @@ import { db } from '../../database';
 
 const Home = () => {
   const [posts, setPosts] = useState([]); // State to hold the fetched posts
-  const [loading, setLoading] = useState(true); // State to show a loading indicator
 
   // Fetch the posts when the component mounts
   useEffect(() => {
@@ -14,14 +13,12 @@ const Home = () => {
       } catch (error) {
         console.error('Error fetching posts:', error);
       } finally {
-        setLoading(false); // Stop the loading indicator
       }
     };
 
     fetchPosts();
   }, []); // Empty dependency array ensures the effect runs only once
 
-  if (loading) return <p>Loading...</p>; // Show loading indicator
 
   return (
     <div className="container">
