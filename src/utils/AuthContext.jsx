@@ -23,7 +23,7 @@ export const AuthProvider = ({children}) => {
 
             setUser(true)
         } catch (error) {
-            console.error(error)
+            console.error("loginUser error: " + error)
         }
 
         setLoading(false)
@@ -52,7 +52,7 @@ export const AuthProvider = ({children}) => {
 
             setUser(true)
         } catch (error) {
-            console.error(error)
+            console.error("registerUser error: " + error)
         }
 
         setLoading(false)
