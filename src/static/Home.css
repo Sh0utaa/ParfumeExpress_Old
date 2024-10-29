@@ -1,0 +1,104 @@
+/* Overall page container */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Flex container for images */
+  .image-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Wrap images on smaller screens */
+  }
+  
+  /* Image styling */
+  .model-img {
+    width: 100%;
+    max-width: 300px; /* Restrict maximum size */
+    aspect-ratio: 1 / 1.5; /* Maintain consistent aspect ratio */
+    object-fit: cover; /* Ensure no distortion */
+    border-radius: 10px; /* Optional: Rounded corners */
+    transition: transform 0.3s ease; /* Smooth hover animation */
+  }
+  
+  .model-img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+  }
+  
+  /* Styling for the post list */
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Individual post cards */
+  .post-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .post-card:hover {
+    transform: scale(1.03);
+  }
+  
+/* Container for images */
+.image-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Wrap on smaller screens */
+  position: relative;
+}
+
+/* Image wrapper with overlay */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1 / 1.2;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+.image-wrapper:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Images inside the wrapper */
+.model-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevent distortion */
+  display: block;
+}
+
+/* Blackish tint overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Blackish tint */
+  transition: opacity 0.3s ease; /* Smooth fade effect */
+  opacity: 1;
+  pointer-events: none; /* Prevent interference with hover */
+}
+
+.image-wrapper:hover .overlay {
+  opacity: 0; /* Hide overlay on hover */
+}
