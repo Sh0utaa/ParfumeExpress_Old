@@ -50,6 +50,7 @@
   
   .post-card:hover {
     transform: scale(1.03);
+    cursor: pointer;
   }
   
 /* Container for images */
@@ -101,4 +102,17 @@
 
 .image-wrapper:hover .overlay {
   opacity: 0; /* Hide overlay on hover */
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  overflow: hidden;
+  height: 200px;
+}
+
+.card-body p {
+  font-size: 20px;
 }

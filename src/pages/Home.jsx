@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../database';
 import '../static/Home.css'
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [posts, setPosts] = useState([]); // State to hold the fetched posts
-
+  const navigate = useNavigate();
+  
   // Fetch the posts when the component mounts
   useEffect(() => {
     const fetchPosts = async () => {
@@ -21,7 +23,9 @@ const Home = () => {
   }, []); // Empty dependency array ensures the effect runs only once
 
 
-
+  const handlePostClick = (postId) => {
+    navigate(`/product/${postId}`);
+  };
 
   return (
       <div className="page-container">
@@ -41,18 +45,34 @@ const Home = () => {
         </div>
 
       <h1>Posts</h1>
-      <ul className="post-list">
+      <ul className='post-list'>
         {posts.map((post) => (
-          <li key={post.$id} className="post-card">
-            <h2>{post.Title}</h2>
-            <p>{post.Body}</p>
-            <p><strong>Price:</strong> ${post.Price}</p>
-            <p><strong>Brand:</strong> {post.Brand}</p>
-            <p><strong>Gender:</strong> {post.Gender}</p>
-            {/* <p><strong>Image URL:</strong> {post.ImageLink}</p> */}
-          </li>
+          <li key={post.$id}
+           className="post-card"
+           onClick={() => handlePostClick(post.$id)} 
+           >
+            <div className="image-container">
+              <img src={post.ImageLink} alt="" />
+            </div>
+            <div className="card-title">
+              <h5>
+                {post.Title}
+              </h5>
+            </div>
+            <div className="card-body">
+              <p>
+                {post.Body.split(' ').length > 10 
+                  ? post.Body.split(' ').slice(0, 20).join(' ') + '...' 
+                  : post.Body}
+              </p>
+            </div>
+              <p><strong>Price:</strong> ${post.Price}</p>
+              <p><strong>Brand:</strong> {post.Brand}</p>
+              <p><strong>Gender:</strong> {post.Gender}</p>
+        </li>
         ))}
       </ul>
+
     </div>
   );
 };

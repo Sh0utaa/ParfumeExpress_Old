@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PrivateRoutes from './utils/PrivateRoutes';
 import { AuthProvider } from './utils/AuthContext';
+import Product from './pages/Product';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           
           {/* Wrap private routes inside the PrivateRoutes component */}
           <Route element={<PrivateRoutes />}>
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/product/:id" element={<Product />} />
           </Route>
         </Routes>
       </AuthProvider>
