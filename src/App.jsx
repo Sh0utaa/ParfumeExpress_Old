@@ -18,11 +18,11 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/search" element={<SearchPage />}></Route>
           <Route path="/" element={<Home />} />
           
           {/* Wrap private routes inside the PrivateRoutes component */}
           <Route element={<PrivateRoutes />}>
+          <Route path="/search" element={<SearchPage />}></Route>
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/product/:id" element={<Product />} />
           </Route>
