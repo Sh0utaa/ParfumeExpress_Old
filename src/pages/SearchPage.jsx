@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../database';
 import { useLocation } from 'react-router-dom';
 import '../Static/SearchPage.css'; // Import your CSS file
+import { useNavigate } from 'react-router-dom';
+
 
 function SearchPage() {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPostsBySearch = async (term) => {
@@ -34,8 +37,13 @@ function SearchPage() {
     }
   };
 
+  const handlePostClick = (postId) => {
+    navigate(`/product/${postId}`);
+  };
+
   return (
-    <div className="search-page">
+    <div className="page-container">
+      <div className="search-page">
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -46,29 +54,34 @@ function SearchPage() {
         />
         <button type="submit">Search</button>
       </form>
-      <ul className="post-list">
+      <ul className='post-list'>
         {posts.map((post) => (
-          <li key={post.$id} className="post-card">
-            <div className="image-wrapper">
-              <img className="model-img" src={post.ImageLink} alt={post.Title} />
-              {/* Removed overlay div */}
+          <li key={post.$id}
+           className="post-card"
+           onClick={() => handlePostClick(post.$id)} 
+           >
+            <div className="image-container">
+              <img src={post.ImageLink} alt="" />
             </div>
             <div className="card-title">
-              <h5>{post.Title}</h5>
+              <h5>
+                {post.Title}
+              </h5>
             </div>
             <div className="card-body">
               <p>
-                {post.Body.split(' ').length > 10
-                  ? post.Body.split(' ').slice(0, 10).join(' ') + '...'
+                {post.Body.split(' ').length > 10 
+                  ? post.Body.split(' ').slice(0, 20).join(' ') + '...' 
                   : post.Body}
               </p>
             </div>
-            <p><strong>Price:</strong> ${post.Price}</p>
-            <p><strong>Brand:</strong> {post.Brand}</p>
-            <p><strong>Gender:</strong> {post.Gender}</p>
-          </li>
+              <p><strong>Price:</strong> ${post.Price}</p>
+              <p><strong>Brand:</strong> {post.Brand}</p>
+              <p><strong>Gender:</strong> {post.Gender}</p>
+        </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }
