@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { db } from '../../database';
+import { useLocation } from 'react-router-dom';
+import '../static/SearchPage.css'
 
 function SearchPage() {
   const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
 
   useEffect(() => {
-    const fetchPostsBySearch = async () => {
-      const queryParams = new URLSearchParams(location.search);
-      const searchTerm = queryParams.get('query');
-
-      if (searchTerm) {
+    const fetchPostsBySearch = async (term) => {
+      if (term) {
         try {
-          const results = await db.posts.searchByTitle(searchTerm);
+          const results = await db.posts.searchByTitle(term);
           setPosts(results);
         } catch (error) {
           console.error('Error fetching search results:', error);
@@ -21,12 +20,33 @@ function SearchPage() {
       }
     };
 
-    fetchPostsBySearch();
-  }, [location.search]);
+    // Call fetchPostsBySearch with the current search term when the component mounts or when searchTerm changes
+    fetchPostsBySearch(searchTerm);
+  }, [searchTerm]); // Add searchTerm to dependency array
+
+  const handleSearch = (event) => {
+    event.preventDefault(); // Prevent page refresh on form submission
+    setSearchTerm(searchTerm.trim()); // Update the search term and trigger useEffect
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch(event); // Trigger search on Enter key press
+    }
+  };
 
   return (
     <div className="search-page">
-      <h1>Search Results</h1>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Search posts by title..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress} // Trigger search on Enter key press
+        />
+        <button type="submit">Search</button>
+      </form>
       <ul className="post-list">
         {posts.map((post) => (
           <li key={post.$id} className="post-card">

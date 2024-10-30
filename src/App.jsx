@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import PrivateRoutes from './utils/PrivateRoutes';
 import { AuthProvider } from './utils/AuthContext';
 import Product from './pages/Product';
+import SearchPage from './pages/SearchPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/search" element={<SearchPage />}></Route>
           <Route path="/" element={<Home />} />
           
           {/* Wrap private routes inside the PrivateRoutes component */}
