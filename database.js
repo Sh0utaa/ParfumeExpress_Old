@@ -48,6 +48,21 @@ db[collections[0].name] = {
         throw error;
       }
     },
+
+    searchByTitle: async (searchTerm) => {
+      try {
+        const response = await databases.listDocuments(
+          collections[0].databaseId,
+          collections[0].id,
+          [Query.search("Title", searchTerm)]
+        );
+        return response.documents;
+      } catch (error) {
+        console.error("Error searching posts:", error);
+        return [];
+      }
+    },
+
 };
 
 export { db };

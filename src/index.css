@@ -33,7 +33,7 @@
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 1em 1em;
+    padding: 5px 5px 5px 5px;
     border-bottom: 2px solid #000;
 }
 
@@ -52,7 +52,7 @@
 }
 
 #header-logo{
-    font-size: 48px;
+    font-size: 40px;
     text-decoration-line: none;
     color: #000;
     font-weight: 900;
@@ -65,7 +65,7 @@
     border:none;
     background-color: #000;
     color: #fff;
-    padding: 0.5em 1em;
+    padding: 10px 15px 10px 15px;
     transition: 0.3s;
     border:1px solid #000;
     text-decoration: none;
