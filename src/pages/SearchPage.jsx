@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../database';
 import { useLocation } from 'react-router-dom';
-import '../static/SearchPage.css'
+import '../Static/SearchPage.css'; // Import your CSS file
 
 function SearchPage() {
   const [posts, setPosts] = useState([]);
@@ -20,18 +20,17 @@ function SearchPage() {
       }
     };
 
-    // Call fetchPostsBySearch with the current search term when the component mounts or when searchTerm changes
     fetchPostsBySearch(searchTerm);
-  }, [searchTerm]); // Add searchTerm to dependency array
+  }, [searchTerm]);
 
   const handleSearch = (event) => {
-    event.preventDefault(); // Prevent page refresh on form submission
-    setSearchTerm(searchTerm.trim()); // Update the search term and trigger useEffect
+    event.preventDefault();
+    setSearchTerm(searchTerm.trim());
   };
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleSearch(event); // Trigger search on Enter key press
+      handleSearch(event);
     }
   };
 
@@ -43,15 +42,16 @@ function SearchPage() {
           placeholder="Search posts by title..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={handleKeyPress} // Trigger search on Enter key press
+          onKeyPress={handleKeyPress}
         />
         <button type="submit">Search</button>
       </form>
       <ul className="post-list">
         {posts.map((post) => (
           <li key={post.$id} className="post-card">
-            <div className="image-container">
-              <img src={post.ImageLink} alt={post.Title} />
+            <div className="image-wrapper">
+              <img className="model-img" src={post.ImageLink} alt={post.Title} />
+              {/* Removed overlay div */}
             </div>
             <div className="card-title">
               <h5>{post.Title}</h5>
