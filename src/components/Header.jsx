@@ -21,8 +21,6 @@ const Header = () => {
                     <Link to="/" className="header--link">Home</Link>
                     <Link to={`/profile/${user.$id}`} className="header--link">Profile</Link>
                     <Link to="/search" className="header--link">Search</Link>
-                    <button onClick={logoutUser} className="btn">Logout</button>
-
                 </>
             ):(
                 <Link className="btn" to="/login">Login</Link>
