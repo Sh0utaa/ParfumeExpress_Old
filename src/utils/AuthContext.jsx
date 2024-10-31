@@ -21,7 +21,7 @@ export const AuthProvider = ({children}) => {
                 userInfo.password
             )
 
-            setUser(true)
+            setUser(response)
         } catch (error) {
             console.error("loginUser error: " + error)
         }
@@ -50,7 +50,7 @@ export const AuthProvider = ({children}) => {
                 userInfo.password1
             )
 
-            setUser(true)
+            setUser(response)
         } catch (error) {
             console.error("registerUser error: " + error)
         }

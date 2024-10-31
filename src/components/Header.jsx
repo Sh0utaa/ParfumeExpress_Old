@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../utils/AuthContext'
+
 
 const Header = () => {
     const navigate = useNavigate()
 
     const {user, logoutUser} = useAuth()
+
 
   return (
     <div className="header">
@@ -17,7 +19,7 @@ const Header = () => {
             {user ? (
                 <>
                     <Link to="/" className="header--link">Home</Link>
-                    <Link to="/profile" className="header--link">Profile</Link>
+                    <Link to={`/profile/${user.$id}`} className="header--link">Profile</Link>
                     <Link to="/search" className="header--link">Search</Link>
                     <button onClick={logoutUser} className="btn">Logout</button>
 
