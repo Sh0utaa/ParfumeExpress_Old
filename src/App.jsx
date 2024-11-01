@@ -11,6 +11,7 @@ import Product from './pages/Product';
 import SearchPage from './pages/SearchPage'
 import VerifyEmail from './pages/VerifyEmail';
 import ChangePassword from './pages/ChangePassword';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/changepassword" element={<ChangePassword />}></Route>
+          <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
           <Route path="/" element={<Home />} />
           
           {/* Wrap private routes inside the PrivateRoutes component */}

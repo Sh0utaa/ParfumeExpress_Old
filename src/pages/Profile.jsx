@@ -5,12 +5,6 @@ import '../static/Profile.css';
 const Profile = () => {
   const { user, logoutUser, verifyUser, sendPasswordRecovery } = useAuth();
 
-  const handleDeleteAccount = async () => {
-    // Code to delete account
-    alert('Account deleted.');
-    logoutUser();
-  };
-
   return (
     <div className="profile-container">
       <h1>Welcome to your profile, {user.name}!</h1>
@@ -40,11 +34,6 @@ const Profile = () => {
         </button>
       </div>
 
-      <div className="profile-section">
-        <button className="btn delete-btn" onClick={handleDeleteAccount}>
-          Delete Account
-        </button>
-      </div>
     </div>
   );
 };

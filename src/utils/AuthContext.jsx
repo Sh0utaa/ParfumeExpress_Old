@@ -73,17 +73,6 @@ export const AuthProvider = ({children}) => {
         }
     }
 
-    const updateRecoveryPassword = async (userDetails) => {
-        try {
-            await account.updateRecovery(userDetails.userId, userDetails.secret, userDetails.password1, userDetails.password2);
-            alert("Password changed successfully!");
-            navigate("/login");
-        } catch (error) {
-            alert("Password change failed. Please try again.");
-            console.error(error);
-        }
-    }
-
     const checkUserStatus = async () => {
         try {
             let accountDetails = await account.get();   
@@ -103,7 +92,6 @@ export const AuthProvider = ({children}) => {
         checkUserStatus,
         verifyUser,
         sendPasswordRecovery,
-        updateRecoveryPassword,
     }
     
     return (

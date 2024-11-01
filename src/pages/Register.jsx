@@ -88,6 +88,7 @@ const Register = () => {
 
         </form>
 
+        <p>Forgot password? <a href='/forgotpassword'>Click here!</a> </p>
         <p>Already have an account? <Link to="/login">Login</Link></p>
 
       </div>

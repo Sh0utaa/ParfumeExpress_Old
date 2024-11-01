@@ -2,10 +2,8 @@ import { React, useRef, useEffect } from 'react';
 import { account } from '../appwriteConfig';
 import '../static/Profile.css';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../utils/AuthContext';
 
 function ChangePassword() {
-    const updateRecoveryPassword = useAuth();
     const navigate = useNavigate();
     const changePasswordForm = useRef(null);
 
@@ -31,9 +29,14 @@ function ChangePassword() {
             return;
         }
 
-        const userData = {userId, secret, password1, password2}
-
-        await updateRecoveryPassword(userData)
+        try {
+            await account.updateRecovery(userId, secret, password1, password2);
+            alert("Password changed successfully!");
+            navigate("/login");
+        } catch (error) {
+            alert("Password change failed. Please try again.");
+            console.error(error);
+        }
     };
 
     return (
