@@ -36,7 +36,6 @@ export const AuthProvider = ({children}) => {
 
     const registerUser = async (userInfo) => {
         setLoading(true)
-
         try {
             let response = await account.create(
                 ID.unique(),
@@ -49,13 +48,21 @@ export const AuthProvider = ({children}) => {
                 userInfo.email,
                 userInfo.password1
             )
-
             setUser(response)
         } catch (error) {
             console.error("registerUser error: " + error)
         }
 
         setLoading(false)
+    }
+
+    const verifyUser = async () => {
+        try {
+            await account.createVerification("http://localhost:5173/verifyemail");
+            alert("Verification link has been sent to " + account.email + "!");
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const checkUserStatus = async () => {
@@ -75,6 +82,7 @@ export const AuthProvider = ({children}) => {
         logoutUser,
         registerUser,
         checkUserStatus,
+        verifyUser,
     }
     
     return (

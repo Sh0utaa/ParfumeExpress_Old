@@ -9,6 +9,7 @@ import PrivateRoutes from './utils/PrivateRoutes';
 import { AuthProvider } from './utils/AuthContext';
 import Product from './pages/Product';
 import SearchPage from './pages/SearchPage'
+import VerifyEmail from './pages/VerifyEmail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           {/* Wrap private routes inside the PrivateRoutes component */}
           <Route element={<PrivateRoutes />}>
           <Route path="/search" element={<SearchPage />}></Route>
+          <Route path="/verifyemail" element={<VerifyEmail />}></Route>
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/product/:id" element={<Product />} />
           </Route>

@@ -3,16 +3,11 @@ import { useAuth } from '../utils/AuthContext';
 import '../static/Profile.css';
 
 const Profile = () => {
-  const { user, logoutUser } = useAuth();
+  const { user, logoutUser, verifyUser } = useAuth();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [isVerified, setIsVerified] = useState(user.emailVerification || false);
 
-  const handleVerifyEmail = async () => {
-    // Code to send verification email
-    alert('Verification email sent!');
-    setIsVerified(true); // Update to true if verification succeeds
-  };
 
   const handleChangePassword = async () => {
     // Code to change password
@@ -31,17 +26,11 @@ const Profile = () => {
     <div className="profile-container">
       <h1>Welcome to your profile, {user.name}!</h1>
       <div className="profile-section">
-        <h3>Email Verification</h3>
-        {isVerified ? (
-          <p>Email verified ✔️</p>
-        ) : (
-          <button className="btn verify-btn" onClick={handleVerifyEmail}>
-            Verify Email
-          </button>
-        )}
-      </div>
+        <h3>Verify Email</h3>
+        <button className="btn verificaiton-btn" onClick={verifyUser}>
+          Send Verification Link
+        </button>
 
-      <div className="profile-section">
         <h3>Change Password</h3>
         <input
           type="password"
