@@ -24,7 +24,7 @@ const Register = () => {
     const password2 = registerForm.current.password2.value
 
     if(password1 !== password2) {
-      alert("Password do not match!")
+      alert("Passwords do not match!")
       return
     }
 

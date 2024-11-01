@@ -10,6 +10,7 @@ import { AuthProvider } from './utils/AuthContext';
 import Product from './pages/Product';
 import SearchPage from './pages/SearchPage'
 import VerifyEmail from './pages/VerifyEmail';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/changepassword" element={<ChangePassword />}></Route>
           <Route path="/" element={<Home />} />
           
           {/* Wrap private routes inside the PrivateRoutes component */}
