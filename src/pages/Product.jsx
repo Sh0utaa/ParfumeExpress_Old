@@ -1,14 +1,18 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { db } from '../../database';
 import '../static/Product.css'
-
+import { useAuth } from '../utils/AuthContext';
 
 const Product = () => {
     const { id } = useParams(); // Get post ID from the URL
     const [post, setPost] = useState(null);
-  
+    const [status, setStatus] = useState(Boolean);
+    const user = useAuth();
+    const navigate = useNavigate();
+
+    
     useEffect(() => {
       const fetchPost = async () => {
         try {
@@ -18,10 +22,34 @@ const Product = () => {
           console.error('Error fetching post:', error);
         }
       };
+
+      const checkStatus = async () => {
+        try {
+          const response = await db.cart.isPostInCart(user.user.$id, id);
+          setStatus(response)
+        } catch (error) {
+          console.error(error);
+        }
+      }
   
+      checkStatus();
       fetchPost();
     }, [id]);
-  
+
+    const addToCart = async () => {
+      try {
+        const response = await db.cart.addUserCartEntry(user.user.$id, id);
+        alert("post has been added to cart, " + response);
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    const goToCart = async () => {
+      navigate(`/cart`);
+    }
+
     if (!post) return <p>Loading...</p>;
   
     return (
@@ -37,7 +65,10 @@ const Product = () => {
             <p><strong>Gender:</strong> {post.Gender}</p>
             <div className="payment-section">
             <button className="buy-now">Buy Now</button>
-            <button className="add-to-cart">Add to Cart</button>
+
+            {status && <button className="add-to-cart" onClick={goToCart}>Go to Cart</button>}
+            {!status && <button className="add-to-cart" onClick={addToCart}>Add to Cart</button>}
+
             </div>
         </div>
         </div>

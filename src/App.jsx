@@ -12,6 +12,7 @@ import SearchPage from './pages/SearchPage'
 import VerifyEmail from './pages/VerifyEmail';
 import ChangePassword from './pages/ChangePassword';
 import ForgotPassword from './pages/ForgotPassword';
+import Cart from './pages/Cart';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
           <Route path="/search" element={<SearchPage />}></Route>
           <Route path="/verifyemail" element={<VerifyEmail />}></Route>
+          <Route path="/cart" element={<Cart/>}></Route>
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/product/:id" element={<Product />} />
           </Route>
